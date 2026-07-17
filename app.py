@@ -23,7 +23,7 @@ init_db()
 
 def parse_screenshot(uploaded_file, api_key):
     genai.configure(api_key=api_key)
-   model = genai.GenerativeModel('gemini-1.5-flash-latest')
+    model = genai.GenerativeModel('gemini-1.5-flash-latest')
     img = Image.open(uploaded_file)
     prompt = """
     Analyze this football match stats screenshot. Extract the overall match metrics and individual player data.
@@ -39,7 +39,6 @@ def parse_screenshot(uploaded_file, api_key):
     response = model.generate_content([prompt, img])
     clean_text = response.text.strip().replace("```json", "").replace("```", "")
     return json.loads(clean_text)
-
 # UI Setup
 st.title("🏆 FIFA Tournament Center")
 st.markdown("---")
